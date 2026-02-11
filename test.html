@@ -1,0 +1,88 @@
+<section id="sustainabilityHero">
+  <style>
+    /* ===== Scope: #sustainabilityHero ONLY ===== */
+    #sustainabilityHero{
+      font-family:Pretendard,"Noto Sans KR",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      background:#fff;
+      padding:40px 20px;
+      display:flex;
+      justify-content:center;
+    }
+
+    #sustainabilityHero .hero-frame{
+      width:100%;
+      max-width:1200px;
+      aspect-ratio:16/9;
+      position:relative;
+      overflow:hidden;
+      border-radius:60px;
+      background:#000;
+    }
+
+    #sustainabilityHero .hero-bg{
+      position:absolute;
+      inset:0;
+      background:url('https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+      filter:brightness(0.75);
+    }
+
+    #sustainabilityHero .hero-overlay{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:20px;
+    }
+
+    #sustainabilityHero .hero-content{
+      max-width:760px;
+      color:#fff;
+    }
+
+    #sustainabilityHero .hero-eyebrow{
+      font-size:14px;
+      letter-spacing:0.08em;
+      opacity:0.85;
+      margin-bottom:12px;
+      font-weight:600;
+    }
+
+    #sustainabilityHero h1{
+      font-size:clamp(36px,5vw,64px);
+      font-weight:800;
+      margin:0 0 20px;
+      line-height:1.2;
+    }
+
+    #sustainabilityHero .hero-desc{
+      font-size:clamp(15px,2vw,18px);
+      line-height:1.7;
+      opacity:0.95;
+    }
+
+    @media (max-width:768px){
+      #sustainabilityHero .hero-frame{
+        border-radius:32px;
+        aspect-ratio:4/3;
+      }
+    }
+  </style>
+
+  <div class="hero-frame">
+    <div class="hero-bg"></div>
+
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <div class="hero-eyebrow">SUSTAINABILITY MANAGEMENT</div>
+        <h1>지속가능경영</h1>
+        <p class="hero-desc">
+          삼성중공업은 지속가능한 가치를 창출하고 더 나은 미래를 그리기 위해<br>
+          더 멀리, 더 힘차게 항해할 것입니다.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
