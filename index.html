@@ -1461,11 +1461,766 @@ src="https://www.facebook.com/tr?id=690836940478119&ev=PageView&noscript=1"
 
 
 
-<div id="form_biz"></div>
+<!-- <div id="form_biz"></div> -->
 
 
 
+<section id="applyMintForm" aria-label="신청 폼">
+  <style>
+    #applyMintForm{
+      --ink:#111827;
+      --muted:#6b7280;
+      --brand:#13b5a3;
+      --accent:#0f9f90;
+      --gray:#8b949e;
+      --gray-dark:#6b7280;
+      --bg:#f7f9fa;
+      --line:#e5e7eb;
+      --card:#ffffff;
+      --radius:22px;
+      --shadow:0 22px 60px rgba(15,23,42,.10);
+      font-family:Pretendard,"Noto Sans KR",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      background:linear-gradient(180deg,#ffffff 0%,#f7fbfa 100%);
+      color:var(--ink);
+      position:relative;
+      overflow:hidden;
+      padding:120px 16px;
+    }
 
+    #applyMintForm *{box-sizing:border-box;}
+
+    #applyMintForm .wrap{
+      max-width:960px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:44px;
+      position:relative;
+      z-index:2;
+    }
+
+    #applyMintForm .bg-bubble{
+      position:absolute;
+      border-radius:50%;
+      background:#e8f7f5;
+      opacity:.7;
+      pointer-events:none;
+      z-index:0;
+    }
+
+    #applyMintForm .b1{width:520px;height:520px;left:-180px;top:40px;}
+    #applyMintForm .b2{width:420px;height:420px;right:-160px;bottom:-120px;opacity:.55;}
+
+    #applyMintForm .tag{
+      display:inline-flex;
+      padding:7px 15px;
+      border-radius:999px;
+      background:#f2fbfa;
+      color:var(--brand);
+      border:1px solid rgba(19,181,163,.24);
+      font-size:.88rem;
+      font-weight:800;
+      margin-bottom:14px;
+    }
+
+    #applyMintForm .headline{
+      margin:0 0 18px;
+      font-size:clamp(30px,4.5vw,46px);
+      line-height:1.24;
+      letter-spacing:-.045em;
+      font-weight:900;
+    }
+
+    #applyMintForm .headline b{color:var(--brand);}
+
+    #applyMintForm .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:1.05rem;
+      line-height:1.75;
+      font-weight:600;
+    }
+
+    #applyMintForm .points{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:22px;
+    }
+
+    #applyMintForm .chip{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px;
+      text-align:center;
+      font-weight:850;
+      font-size:.94rem;
+      color:#374151;
+      box-shadow:0 8px 18px rgba(15,23,42,.04);
+    }
+
+    #applyMintForm .card{
+      background:rgba(255,255,255,.94);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:30px;
+      backdrop-filter:blur(14px);
+    }
+
+    #applyMintForm h3{
+      margin:0 0 8px;
+      font-size:1.35rem;
+      font-weight:900;
+      letter-spacing:-.03em;
+    }
+
+    #applyMintForm .help{
+      margin:0 0 22px;
+      color:var(--muted);
+      font-size:.92rem;
+      font-weight:600;
+    }
+
+    #applyMintForm .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:15px;
+    }
+
+    #applyMintForm .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    #applyMintForm .full{grid-column:1/-1;}
+
+    #applyMintForm label{
+      font-size:.94rem;
+      font-weight:850;
+      color:#2f3743;
+      letter-spacing:-.02em;
+    }
+
+    #applyMintForm input[type="text"],
+    #applyMintForm input[type="tel"],
+    #applyMintForm select,
+    #applyMintForm textarea{
+      width:100%;
+      min-height:50px;
+      padding:13px 14px;
+      border-radius:14px;
+      border:1.5px solid var(--line);
+      background:#fff;
+      color:var(--ink);
+      font-size:1rem;
+      font-family:inherit;
+      outline:none;
+      transition:.22s ease;
+      appearance:none;
+      -webkit-appearance:none;
+    }
+
+    #applyMintForm textarea{
+      min-height:96px;
+      resize:vertical;
+      line-height:1.6;
+    }
+
+    #applyMintForm input:focus,
+    #applyMintForm select:focus,
+    #applyMintForm textarea:focus{
+      border-color:rgba(19,181,163,.62);
+      box-shadow:0 0 0 4px rgba(19,181,163,.13);
+    }
+
+    #applyMintForm .select-wrap{position:relative;}
+
+    #applyMintForm .select-wrap select{padding-right:42px;}
+
+    #applyMintForm .select-wrap::after{
+      content:"";
+      position:absolute;
+      right:14px;
+      top:50%;
+      transform:translateY(-50%);
+      width:18px;
+      height:18px;
+      pointer-events:none;
+      background-repeat:no-repeat;
+      background-size:18px 18px;
+      opacity:.75;
+      background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNmI3MjgwIiBzdHJva2Utd2lkdGg9IjIiPjxwb2x5bGluZSBwb2ludHM9IjYgOSAxMiAxNSAxOCA5Ii8+PC9zdmc+');
+    }
+
+    #applyMintForm .agree{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      padding:15px;
+      border-radius:15px;
+      background:#f8fafb;
+      border:1px solid var(--line);
+      color:var(--muted);
+      line-height:1.55;
+      font-size:.92rem;
+    }
+
+    #applyMintForm .agree input{
+      margin-top:4px;
+      /* accent-color:var(--brand); */
+    }
+
+    #applyMintForm .terms-link{
+      margin-left:8px;
+      border:0;
+      background:transparent;
+      color:var(--brand);
+      font-weight:850;
+      text-decoration:underline;
+      text-underline-offset:2px;
+      cursor:pointer;
+      font-family:inherit;
+      padding:0;
+    }
+
+    #applyMintForm .btn-fill{
+      width:100%;
+      margin-top:22px;
+      min-height:56px;
+      border:0;
+      border-radius:999px;
+      background:#8b949e;
+      color:#fff;
+      font-size:1.02rem;
+      font-weight:900;
+      font-family:inherit;
+      letter-spacing:-.02em;
+      cursor:default;
+      transition:all .3s ease;
+      box-shadow:none;
+    }
+
+    #applyMintForm .btn-fill.is-ready{
+      background:linear-gradient(135deg,var(--brand),var(--accent));
+      color:#fff;
+      cursor:pointer;
+      box-shadow:0 12px 26px rgba(19,181,163,.32);
+    }
+
+    #applyMintForm .toast{
+      display:none;
+      margin-top:12px;
+      padding:13px 15px;
+      border-radius:14px;
+      background:#ecfbf7;
+      color:#0f3c36;
+      border:1px solid #b8efe6;
+      font-weight:800;
+    }
+
+    #applyMintForm .toast.show{display:block;}
+
+    #applyMintForm .terms-overlay{
+      position:fixed;
+      inset:0;
+      display:grid;
+      place-items:center;
+      background:rgba(17,24,39,.56);
+      padding:24px;
+      z-index:9999;
+    }
+
+    #applyMintForm .terms-overlay[hidden]{display:none;}
+
+    #applyMintForm .terms-sheet{
+      width:min(820px,90vw);
+      max-height:82dvh;
+      background:#fff;
+      border-radius:20px;
+      border:1px solid var(--line);
+      box-shadow:0 28px 90px rgba(0,0,0,.22);
+      display:grid;
+      grid-template-rows:auto 1fr auto;
+      overflow:hidden;
+    }
+
+    #applyMintForm .terms-header{
+      padding:18px 20px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    #applyMintForm .terms-title{
+      margin:0;
+      font-size:1.12rem;
+      font-weight:900;
+    }
+
+    #applyMintForm .terms-close-x{
+      border:0;
+      background:#f3f4f6;
+      width:34px;
+      height:34px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:20px;
+      color:#4b5563;
+    }
+
+    #applyMintForm .terms-body{
+      padding:20px;
+      overflow:auto;
+      line-height:1.75;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    #applyMintForm .terms-body h4{
+      margin:18px 0 8px;
+      color:var(--ink);
+      font-size:1rem;
+      font-weight:900;
+    }
+
+    #applyMintForm .terms-body ul{
+      padding-left:20px;
+      margin:8px 0 14px;
+    }
+
+    #applyMintForm .terms-footer{
+      padding:16px 20px;
+      border-top:1px solid var(--line);
+      display:flex;
+      justify-content:flex-end;
+      gap:10px;
+    }
+
+    #applyMintForm .btn-outline,
+    #applyMintForm .btn-solid{
+      min-width:118px;
+      min-height:46px;
+      border-radius:999px;
+      font-family:inherit;
+      font-weight:900;
+      cursor:pointer;
+      padding:0 18px;
+    }
+
+    #applyMintForm .btn-outline{
+      background:#fff;
+      color:var(--gray-dark);
+      border:1px solid #cfd5dc;
+    }
+
+    #applyMintForm .btn-solid{
+      background:var(--brand);
+      color:#fff;
+      border:0;
+    }
+
+    @media(max-width:550px){
+      #applyMintForm{padding:80px 16px;}
+      #applyMintForm .points,
+      #applyMintForm .grid{grid-template-columns:1fr;}
+      #applyMintForm .card{padding:22px 18px;}
+      #applyMintForm .terms-overlay{align-items:flex-end;padding:10px;}
+      #applyMintForm .terms-sheet{width:100%;border-radius:18px 18px 0 0;}
+      #applyMintForm .terms-footer{flex-direction:column;}
+      #applyMintForm .btn-outline,
+      #applyMintForm .btn-solid{width:100%;}
+    }
+  </style>
+
+  <span class="bg-bubble b1"></span>
+  <span class="bg-bubble b2"></span>
+
+  <div class="wrap">
+    <div class="copy">
+      <span class="tag">무료 상담 신청</span>
+      <h2 class="headline">
+        자금 부족의 어려움<br>
+        이젠 내려놓으세요.<br>
+        <b>지금 간편 신청 하기</b>
+      </h2>
+      <p class="sub">
+        간단한 항목을 기반으로 모든 정책자금을 한번에 찾고 자금의 여유를 확보하세요!
+      </p>
+
+      <div class="points">
+        <div class="chip">✓ 전문가 1:1 무료 상담</div>
+        <div class="chip">✓ 즉시 전화 안내</div>
+        <div class="chip">✓ 간편 신청</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <form
+        id="form_e12"
+        method="POST"
+        target="hidden_iframe12"
+        action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdWDzCkTT0KDAim4JeABTY5bi5jVkWwuD7lfx8lSCwkkWsSug/formResponse"
+      >
+        <input type="hidden" name="entry.1524668040" value="당근">
+
+        <h3>상담 신청 폼</h3>
+        <p class="help">* 표시는 필수 입력</p>
+
+        <div class="grid">
+          <div class="field">
+            <label for="name1">성함 *</label>
+            <input id="name1" name="entry.1069240464" type="text" placeholder="홍길동" maxlength="10" autocomplete="name">
+          </div>
+
+          <div class="field">
+            <label for="phone1">연락처 *</label>
+            <input id="phone1" name="entry.1985153351" type="tel" placeholder="010-1234-5678" maxlength="13" autocomplete="tel">
+          </div>
+
+          <div class="field">
+            <label for="company1">회사명 *</label>
+            <input id="company1" name="entry.54578187" type="text" placeholder="회사명" maxlength="30">
+          </div>
+
+          <div class="field">
+            <label for="region1">지역 *</label>
+            <div class="select-wrap">
+              <select id="region1" name="entry.2044065206">
+                <option value="">지역 선택</option>
+                <option>서울</option><option>부산</option><option>대구</option><option>인천</option>
+                <option>광주</option><option>대전</option><option>울산</option><option>경기</option>
+                <option>강원</option><option>충북</option><option>충남</option><option>전북</option>
+                <option>전남</option><option>경북</option><option>경남</option><option>제주</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="type1">업태 *</label>
+            <div class="select-wrap">
+              <select id="type1" name="entry.17479036">
+                <option value="">업태 선택</option>
+                <option>제조업</option>
+                <option>도소매업</option>
+                <option>정보통신업(IT)</option>
+                <option>건설업</option>
+                <option>서비스업</option>
+                <option>일반음식점</option>
+                <option>기타</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="runtime1">사업연혁 *</label>
+            <div class="select-wrap">
+              <select id="runtime1" name="entry.1389324988">
+                <option value="">사업 연혁 선택</option>
+                <option>1년 미만</option>
+                <option>1년 - 3년</option>
+                <option>3년 - 7년</option>
+                <option>7년 이상</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="sales1">연매출 *</label>
+            <div class="select-wrap">
+              <select id="sales1" name="entry.1400342969">
+                <option value="">연매출 선택</option>
+                <option value="매출 없음">매출 없음 (신청불가)</option>
+                <option>1억 미만</option>
+                <option>2~3억원</option>
+                <option>4~5억원</option>
+                <option>5~10억원</option>
+                <option>10~20억원</option>
+                <option>20억원 이상</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="fund1">신용점수 *</label>
+            <div class="select-wrap">
+              <select id="fund1" name="entry.1362031850">
+                <option value="">신용점수 선택</option>
+                <option>900점 이상</option>
+                <option>800점 ~ 899점</option>
+                <option>700점 ~ 799점</option>
+                <option value="700점 미만">700점 미만 (신청 불가)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="overdue1">연체 및 체납여부 *</label>
+            <div class="select-wrap">
+              <select id="overdue1" name="entry.1037729320">
+                <option value="">연체 / 체납 여부 선택</option>
+                <option value="있음">있음 (신청 불가)</option>
+                <option>없음</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="need1">상담 가능 시간 *</label>
+            <div class="select-wrap">
+              <select id="need1" name="entry.1742892989">
+                <option value="">통화가능시간</option>
+                <option value="언제나 통화 가능">언제나 통화 가능</option>
+                <option value="오전 09:00~10:00">오전 09:00 ~ 10:00</option>
+                <option value="오전 10:00~11:00">오전 10:00 ~ 11:00</option>
+                <option value="오전 11:00~12:00">오전 11:00 ~ 12:00</option>
+                <option value="점심 12:00~01:00">점심 12:00 ~ 01:00</option>
+                <option value="오후 01:00~02:00">오후 01:00 ~ 02:00</option>
+                <option value="오후 02:00~03:00">오후 02:00 ~ 03:00</option>
+                <option value="오후 03:00~04:00">오후 03:00 ~ 04:00</option>
+                <option value="오후 04:00~05:00">오후 04:00 ~ 05:00</option>
+                <option value="오후 05:00~06:00">오후 05:00 ~ 06:00</option>
+                <option value="오후 06:00~07:00">오후 06:00 ~ 07:00</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field full">
+            <label for="memo">문의 사항</label>
+            <textarea id="memo" name="entry.549289795" placeholder="상담 내용을 입력해주세요."></textarea>
+          </div>
+
+          <div class="field full">
+            <label class="agree">
+              <input id="agree" type="checkbox" checked>
+              <span>
+                개인정보 수집·이용 및 광고성 정보 수신에 동의합니다. (필수)
+                <button type="button" id="openTerms" class="terms-link">자세히 보기</button>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <button class="btn-fill" id="send_message1" type="submit" disabled>
+          성함을 입력해주세요
+        </button>
+
+        <div id="submitToast" class="toast">잠시만 기다려주세요.</div>
+      </form>
+    </div>
+  </div>
+
+  <iframe name="hidden_iframe12" id="hidden_iframe12" style="display:none;"></iframe>
+
+  <div class="terms-overlay" id="termsOverlay" hidden>
+    <div class="terms-sheet" role="dialog" aria-modal="true">
+      <div class="terms-header">
+        <h3 class="terms-title">개인정보 처리방침</h3>
+        <button type="button" class="terms-close-x" id="termsCloseX">×</button>
+      </div>
+
+      <div class="terms-body">
+        <p>
+          정의세무회계사무소 소상공인정책 자금 지원센터는 개인정보 보호법에 따라
+          개인정보를 보호하고 다음과 같이 개인정보 처리지침을 공개합니다.
+        </p>
+
+        <h4>제1조 개인정보의 처리 목적</h4>
+        <ul>
+          <li>상담 신청자 확인 및 상담 안내</li>
+          <li>정책자금 가능 여부 확인 및 맞춤 상담 제공</li>
+          <li>서비스 안내 및 고객 응대</li>
+        </ul>
+
+        <h4>제2조 수집하는 개인정보 항목</h4>
+        <ul>
+          <li>필수항목: 성함, 연락처, 회사명, 지역, 업태, 사업연혁, 연매출, 신용점수, 연체 및 체납 여부, 상담 가능 시간</li>
+          <li>선택항목: 문의사항</li>
+        </ul>
+
+        <h4>제3조 보유 및 이용기간</h4>
+        <p>개인정보는 상담 및 서비스 제공 목적 달성 시까지 보유·이용됩니다.</p>
+
+        <h4>제4조 동의 거부 권리</h4>
+        <p>필수항목 동의를 거부할 경우 상담 신청이 제한될 수 있습니다.</p>
+      </div>
+
+      <div class="terms-footer">
+        <button type="button" class="btn-outline" id="termsCloseBtn">닫기</button>
+        <button type="button" class="btn-solid" id="termsAgreeBtn">동의하고 계속</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const form = document.getElementById('form_e12');
+      const submitBtn = document.getElementById('send_message1');
+      const iframe = document.getElementById('hidden_iframe12');
+      const toast = document.getElementById('submitToast');
+
+      const nameInput = document.getElementById('name1');
+      const phoneInput = document.getElementById('phone1');
+      const companyInput = document.getElementById('company1');
+      const regionInput = document.getElementById('region1');
+      const typeInput = document.getElementById('type1');
+      const runtimeInput = document.getElementById('runtime1');
+      const salesInput = document.getElementById('sales1');
+      const fundInput = document.getElementById('fund1');
+      const overdueInput = document.getElementById('overdue1');
+      const needInput = document.getElementById('need1');
+      const agreeInput = document.getElementById('agree');
+
+      const termsOverlay = document.getElementById('termsOverlay');
+      const openTerms = document.getElementById('openTerms');
+      const termsCloseX = document.getElementById('termsCloseX');
+      const termsCloseBtn = document.getElementById('termsCloseBtn');
+      const termsAgreeBtn = document.getElementById('termsAgreeBtn');
+
+      let submitted = false;
+      let iframeLoadedAfterSubmit = false;
+
+      function onlyNumbers(value){
+        return value.replace(/[^0-9]/g,'');
+      }
+
+      function formatPhone(value){
+        let num = onlyNumbers(value);
+        if(num.length > 11) num = num.slice(0,11);
+        if(num.length < 4) return num;
+        if(num.length < 8) return num.slice(0,3) + '-' + num.slice(3);
+        return num.slice(0,3) + '-' + num.slice(3,7) + '-' + num.slice(7);
+      }
+
+      function getButtonGuideMessage(){
+        const name1 = nameInput.value.trim();
+        const phone1 = onlyNumbers(phoneInput.value.trim());
+        const company1 = companyInput.value.trim();
+
+        if(!/^[가-힣]{2,}$/.test(name1)){
+          return { text:name1.length === 0 ? '성함을 입력해주세요' : '성함 입력을 확인하세요', success:false };
+        }
+
+        if(!(phone1.substr(0,3) === '010' && phone1.length === 11)){
+          return { text:phone1.length === 0 ? '전화번호를 입력해주세요' : '전화번호 입력을 확인하세요', success:false };
+        }
+
+        if(company1.length < 2) return { text:'회사명 입력을 확인하세요', success:false };
+        if(!regionInput.value) return { text:'지역 선택을 확인하세요', success:false };
+        if(!typeInput.value) return { text:'업태 선택을 확인하세요', success:false };
+        if(!runtimeInput.value) return { text:'사업 연혁을 확인하세요', success:false };
+        if(!salesInput.value) return { text:'연매출 선택을 확인하세요', success:false };
+        if(salesInput.value === '매출 없음') return { text:'매출 조건을 확인하세요', success:false };
+        if(!fundInput.value) return { text:'신용점수 선택을 확인하세요', success:false };
+        if(fundInput.value === '700점 미만') return { text:'신용점수 조건을 확인하세요', success:false };
+        if(!overdueInput.value) return { text:'연체/체납 여부를 확인하세요', success:false };
+        if(overdueInput.value === '있음') return { text:'연체/체납 여부를 확인하세요', success:false };
+        if(!needInput.value) return { text:'통화 가능 시간을 선택하세요', success:false };
+        if(!agreeInput.checked) return { text:'개인정보 동의를 확인해주세요', success:false };
+
+        return { text:'지금 신청하기', success:true };
+      }
+
+      function updateSubmitState(){
+        const guide = getButtonGuideMessage();
+
+        submitBtn.textContent = guide.text;
+        submitBtn.style.color = '#ffffff';
+
+        if(guide.success && !submitted){
+          submitBtn.disabled = false;
+          submitBtn.classList.add('is-ready');
+        }else{
+          submitBtn.disabled = true;
+          submitBtn.classList.remove('is-ready');
+        }
+      }
+
+      phoneInput.addEventListener('input', function(){
+        this.value = formatPhone(this.value);
+        updateSubmitState();
+      });
+
+      [
+        nameInput,
+        companyInput,
+        regionInput,
+        typeInput,
+        runtimeInput,
+        salesInput,
+        fundInput,
+        overdueInput,
+        needInput,
+        agreeInput
+      ].forEach(function(el){
+        el.addEventListener('input', updateSubmitState);
+        el.addEventListener('change', updateSubmitState);
+      });
+
+      openTerms.addEventListener('click', function(e){
+        e.preventDefault();
+        termsOverlay.hidden = false;
+        document.body.style.overflow = 'hidden';
+      });
+
+      function closeTerms(){
+        termsOverlay.hidden = true;
+        document.body.style.overflow = '';
+      }
+
+      termsCloseX.addEventListener('click', closeTerms);
+      termsCloseBtn.addEventListener('click', closeTerms);
+
+      termsAgreeBtn.addEventListener('click', function(){
+        agreeInput.checked = true;
+        agreeInput.dispatchEvent(new Event('change',{bubbles:true}));
+        updateSubmitState();
+        closeTerms();
+      });
+
+      termsOverlay.addEventListener('click', function(e){
+        if(e.target === termsOverlay) closeTerms();
+      });
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+
+        const guide = getButtonGuideMessage();
+
+        if(!guide.success || submitted){
+          updateSubmitState();
+          return;
+        }
+
+        submitted = true;
+        submitBtn.disabled = true;
+        submitBtn.classList.remove('is-ready');
+        submitBtn.textContent = '신청서를 전송 중입니다';
+        submitBtn.style.background = '#8b949e';
+        submitBtn.style.color = '#fff';
+        toast.classList.add('show');
+
+        HTMLFormElement.prototype.submit.call(form);
+      });
+
+      iframe.addEventListener('load', function(){
+        if(!submitted || iframeLoadedAfterSubmit) return;
+
+        iframeLoadedAfterSubmit = true;
+
+        setTimeout(function(){
+          alert('신청이 완료되었습니다.');
+          window.location.href = './result.html';
+        },1000);
+      });
+
+      updateSubmitState();
+    })();
+  </script>
+</section>
 
 
 
@@ -1511,7 +2266,7 @@ src="https://www.facebook.com/tr?id=690836940478119&ev=PageView&noscript=1"
 
 
 <script src="./js/jquery-1.11.0.min.js"></script>
-<script src="./js/validation3.js"> </script>
+<!-- <script src="./js/validation3.js"> </script> -->
 <script src="./js/main.js"> </script>
 
  <script>
@@ -1548,7 +2303,7 @@ $(function(){
       
       <p class="row"><b>주소</b> : 서울시 영등포구 선유로 53길 22 502호</p>
       <!-- <p class="row"><b>대표전화</b> : <a href="tel:1551-4090">1551 - 4090</a></p> -->
-      <p class="row"><b>이메일</b> : flosmarketing@naver.com</p>
+      <!-- <p class="row"><b>이메일</b> : flosmarketing@naver.com</p> -->
      
     </div>
 
